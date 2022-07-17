@@ -127,8 +127,9 @@ return {
 
     -- paste from the primary selection
     {key="v", mods="CMD", action=act.PasteFrom("PrimarySelection")},
-  
-  
+
+    -- In order for ctrl+c to work with the mac; need to disable default assignment
+    {key="c", mods="CTRL", action="DisableDefaultAssignment"},
   },
 
   -- Inactive panes dull 
@@ -190,15 +191,17 @@ mouse_bindings = {
       mods="CTRL|SHIFT",
       action=wezterm.action.StartWindowDrag
     },
+    {
       event={Up={streak=1, button="Left"}},
       mods="SHIFT",
       action=wezterm.action.ExtendSelectionToMouseCursor("Word"),
+    }
   },
   native_macos_fullscreen_mode = false,
 
   -- When true (the default), the viewport will automatically scroll to the bottom of the scrollback when there is input to the terminal so that you can see what you are typing.
   scroll_to_bottom_on_input = true,
-  selection_word_boundary = "{}[]()\"'`.,;:",
+  selection_word_boundary = "{}[]()\"'`,;:",
   show_tab_index_in_tab_bar = true,
   show_update_window = true,
   tab_and_split_indices_are_zero_based = false,
