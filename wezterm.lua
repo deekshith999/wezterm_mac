@@ -4,6 +4,10 @@ local act = wezterm.action
 
 local success, date, stderr = wezterm.run_child_process({"date"});
 
+local keys_table = {
+
+};
+
 
 -- wezterm.log_info("Hello!");
 wezterm.on("window-config-reloaded", function(window, pane)
@@ -130,6 +134,7 @@ return {
 
     -- In order for ctrl+c to work with the mac; need to disable default assignment
     {key="c", mods="CTRL", action="DisableDefaultAssignment"},
+
   },
 
   -- Inactive panes dull 
@@ -182,16 +187,6 @@ return {
 
 mouse_bindings = {
     {
-      event={Drag={streak=1, button="Left"}},
-      mods="NONE",
-      action=wezterm.action.StartWindowDrag
-    },
-    {
-      event={Drag={streak=1, button="Left"}},
-      mods="CTRL|SHIFT",
-      action=wezterm.action.StartWindowDrag
-    },
-    {
       event={Up={streak=1, button="Left"}},
       mods="SHIFT",
       action=wezterm.action.ExtendSelectionToMouseCursor("Word"),
@@ -210,7 +205,7 @@ mouse_bindings = {
 
   line_height = 1.2,
   min_scroll_bar_height = "0.5cell",
-
+  disable_default_mouse_bindings = false,
 }
 
 
